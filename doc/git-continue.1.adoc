@@ -1,0 +1,40 @@
+= git-continue(1)
+:mansource: git continue 0.0.GIT
+:manmanual: git continue
+
+== NAME
+
+git-continue, git-abort - continue or abort a halted operation
+
+== SYNOPSIS
+
+[verse]
+____
+*git continue*
+*git abort*
+____
+
+== DESCRIPTION
+
+*git continue* issues the _--continue_ option to the appropriate command after
+a previously initiated *git-am*(1), *git-cherry-pick*(1), *git-merge*(1),
+*git-rebase*(1), or *git-revert*(1) operation has halted.
+
+The variant program *git abort* instead issues the _--abort_ option.
+
+== AUTHOR
+
+link:mailto:commonquail@gmail.com[Mikkel Kjeldsen]
+
+== REPORTING BUGS
+
+Report bugs and feature requests on the main project development page at
+https://gitlab.com/mkjeldsen/git-continue/
+
+== COPYRIGHT
+
+Copyright (C) 2020 Mikkel Kjeldsen
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License version 2 as published by the Free
+Software Foundation.

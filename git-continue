@@ -1,0 +1,31 @@
+#!/bin/sh
+
+self="${0##*git-}"
+option="--$self"
+
+# LONG_USAGE exported by git-sh-setup.
+# shellcheck disable=2034
+# git-sh-setup dynamically expands variables in LONG_USAGE.
+# shellcheck disable=2016
+LONG_USAGE='$self the ongoing rebase, am, revert, or cherry-pick action'
+
+# See git-sh-setup(1)
+# shellcheck disable=1090
+. "$(git --exec-path)/git-sh-setup"
+
+cd_to_toplevel
+
+# A couple more rebase, revert, and cherry-pick edge cases covered in __git_ps1
+# and __git_sequencer_status. Ignore them until somebody complains.
+if   test -d .git/rebase-merge     ; then action=rebase
+elif test -d .git/rebase-apply     ; then action=am
+elif test -f .git/MERGE_HEAD       ; then action=merge
+elif test -f .git/REVERT_HEAD      ; then action=revert
+elif test -f .git/CHERRY_PICK_HEAD ; then action=cherry-pick
+fi
+
+# $dashless comes from git-sh-setup.
+# shellcheck disable=2154
+test -n "$action" || die "$dashless: don't know how to '$option' current state"
+
+exec git "$action" "$option"
