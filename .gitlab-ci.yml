@@ -1,0 +1,11 @@
+shellcheck:
+  image: koalaman/shellcheck-alpine:v0.7.0
+  stage: test
+  script:
+    - shellcheck git-continue
+
+manpage:
+  image: asciidoctor/docker-asciidoctor:latest
+  stage: test
+  script:
+    - make doc DIST_VERSION=HEAD
