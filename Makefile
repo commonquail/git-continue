@@ -43,7 +43,7 @@ distclean:
 
 release:
 	test -n "$(v)"
-	sed -i "s/^\(:man source: git continue\).\+$$/\1 $(v)/" $(manpath).adoc
+	sed -i "s/^\(:mansource: git continue\).\+$$/\1 $(v)/" $(manpath).adoc
 	git add -p $(manpath).adoc
 	git commit -m "$(bin) $(v)"
 	git tag -a -m "$(bin) $(v)" "v$(v)"
