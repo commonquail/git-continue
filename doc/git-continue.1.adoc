@@ -1,5 +1,5 @@
 = git-continue(1)
-:mansource: git continue 1.1.0
+:mansource: git continue 1.1.GIT
 :manmanual: git continue
 
 == NAME
