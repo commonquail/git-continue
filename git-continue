@@ -15,10 +15,15 @@ LONG_USAGE='$self the ongoing rebase, am, revert, or cherry-pick action'
 
 cd_to_toplevel
 
-# A couple more rebase, revert, and cherry-pick edge cases covered in __git_ps1
-# and __git_sequencer_status. Ignore them until somebody complains.
+# A couple more revert and cherry-pick edge cases in __git_sequencer_status.
+# Ignore them until somebody complains.
 if   test -d .git/rebase-merge     ; then action=rebase
-elif test -d .git/rebase-apply     ; then action=am
+elif test -d .git/rebase-apply     ; then
+    if test -f .git/rebase-apply/applying ; then
+        action=am
+    else
+        action=rebase
+    fi
 elif test -f .git/MERGE_HEAD       ; then action=merge
 elif test -f .git/REVERT_HEAD      ; then action=revert
 elif test -f .git/CHERRY_PICK_HEAD ; then action=cherry-pick
