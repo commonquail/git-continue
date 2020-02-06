@@ -7,6 +7,8 @@ and issues the `--continue` option.
 `git-continue` can be invoked as `git-abort`, in which case it will instead
 issue the `--abort` option.
 
+`git-continue` supports the following operations:
+
 - `git-am`
 - `git-cherry-pick`
 - `git-merge`
