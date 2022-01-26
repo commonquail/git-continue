@@ -41,7 +41,7 @@ installation prefix of `$HOME/.local`.
 
 ## License
 
-Copyright &copy; 2020 Mikkel Kjeldsen
+Copyright &copy; 2022 Mikkel Kjeldsen
 
 This software is released under the GPLv2, on account of using components from
 the Git project v2.25.0 released under the GPLv2 [[git-license]].
