@@ -5,7 +5,8 @@ halted, `git-continue` determines the appropriate command with which to resume
 and issues the `--continue` option.
 
 `git-continue` can be invoked as `git-abort`, in which case it will instead
-issue the `--abort` option.
+issue the `--abort` option, or as `git-skip`, in which case it will issue the
+`--skip` option.
 
 `git-continue` supports the following operations:
 
@@ -27,6 +28,7 @@ issue the `--abort` option.
 
     git continue
     git abort
+    git skip
 
 `git-continue` takes no options. If it doesn't recognize the current repository
 state, it produces an error.
@@ -34,10 +36,10 @@ state, it produces an error.
 ## Installation
 
 Place `git-continue` somewhere in your `$PATH` as `git-continue`, `git-abort`,
-or both. Git will automatically detect the executables as commands and provide
-them as `git continue` respectively `git abort`. You can do this with `make
-install`, optionally providing `PREFIX=<path>` to override the default
-installation prefix of `$HOME/.local`.
+`git-skip`, or any combination of those three. Git will automatically detect
+the executables as commands and provide them as `git continue` etc. You can do
+this with `make install`, optionally providing `PREFIX=<path>` to override the
+default installation prefix of `$HOME/.local`.
 
 ## License
 

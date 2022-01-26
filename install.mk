@@ -13,8 +13,10 @@ install: $(manpath)
 	install -m 0644 $(manpath) $(mandir)
 	ln -sf $(bindir)/$(bin) $(bindir)/git-abort
 	ln -sf $(mandir)/$(manpage) $(mandir)/git-abort.1
+	ln -sf $(bindir)/$(bin) $(bindir)/git-skip
+	ln -sf $(mandir)/$(manpage) $(mandir)/git-skip.1
 
 .PHONY: uninstall
 uninstall:
-	$(RM) $(bindir)/$(bin) $(bindir)/git-abort
-	$(RM) $(mandir)/$(manpage) $(mandir)/git-abort.1
+	$(RM) $(bindir)/$(bin) $(bindir)/git-abort $(bindir)/git-skip
+	$(RM) $(mandir)/$(manpage) $(mandir)/git-abort.1 $(mandir)/git-skip.1

@@ -20,6 +20,15 @@ load helper
     assert_output "git abort: don't know how to '--abort' current state"
 }
 
+@test 'unknown skip' {
+    run git switch foo
+
+    run git skip
+
+    assert_failure
+    assert_output "git skip: don't know how to '--skip' current state"
+}
+
 @test 'merge continue' {
     run git switch foo
     run git merge bar
@@ -40,6 +49,16 @@ load helper
 
     assert_success
     assert_file_contains "$f" foo
+}
+
+@test 'merge skip' {
+    run git switch foo
+    run git merge bar
+
+    run git skip
+
+    assert_failure
+    assert_output "git skip: cannot '--skip' a merge"
 }
 
 @test 'rebase continue' {
@@ -63,6 +82,15 @@ load helper
 
     assert_success
     assert_file_contains "$f" foo
+}
+
+@test 'rebase skip' {
+    run git rebase bar foo
+
+    run git skip
+
+    assert_success
+    assert_file_contains "$f" bar
 }
 
 @test 'am continue' {
@@ -93,6 +121,22 @@ load helper
     run git am $p
 
     run git abort
+
+    assert_success
+    assert_file_contains "$f" foo
+
+    run git ls-files
+    refute_output --partial $p
+}
+
+@test 'am skip' {
+    p=0001-bar-change.patch
+
+    run git switch foo
+    run git format-patch bar -1
+    run git am $p
+
+    run git skip
 
     assert_success
     assert_file_contains "$f" foo
@@ -133,6 +177,21 @@ load helper
     assert_file_contains "$f" bar
 }
 
+@test 'revert skip' {
+    run git switch foo
+    run git checkout bar -- .
+    run git commit --quiet -m 'obstruct revert'
+
+    assert_file_contains "$f" bar
+
+    run git revert HEAD~
+
+    run git skip
+
+    assert_success
+    assert_file_contains "$f" bar
+}
+
 @test 'cherry-pick continue' {
     run git switch foo
     run git cherry-pick bar
@@ -152,6 +211,18 @@ load helper
     run git add -u
 
     run git abort
+
+    assert_success
+    assert_file_contains "$f" foo
+}
+
+@test 'cherry-pick skip' {
+    run git switch foo
+    run git cherry-pick bar
+    run git checkout --theirs .
+    run git add -u
+
+    run git skip
 
     assert_success
     assert_file_contains "$f" foo

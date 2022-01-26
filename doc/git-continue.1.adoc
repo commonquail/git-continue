@@ -4,7 +4,7 @@
 
 == NAME
 
-git-continue, git-abort - continue or abort a halted operation
+git-continue, git-abort, git-skip - continue, abort, or skip a halted operation
 
 == SYNOPSIS
 
@@ -12,6 +12,7 @@ git-continue, git-abort - continue or abort a halted operation
 ____
 *git continue*
 *git abort*
+*git skip*
 ____
 
 == DESCRIPTION
@@ -20,7 +21,8 @@ ____
 a previously initiated *git-am*(1), *git-cherry-pick*(1), *git-merge*(1),
 *git-rebase*(1), or *git-revert*(1) operation has halted.
 
-The variant program *git abort* instead issues the _--abort_ option.
+The variant programs *git abort* and *git skip* instead issue the _--abort_
+respectively the _--skip_ option.
 
 == AUTHOR
 

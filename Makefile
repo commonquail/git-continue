@@ -17,7 +17,7 @@ doc: $(manpath)
 	test -f $@
 	# Multiple manpage names can't be disabled but I don't want it.
 	# asciidoctor/asciidoctor#1811
-	$(RM) doc/git-abort.1
+	$(RM) doc/git-abort.1 doc/git-skip.1
 
 check:
 	shellcheck $(bin)

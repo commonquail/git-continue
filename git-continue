@@ -33,4 +33,8 @@ fi
 # shellcheck disable=2154
 test -n "$action" || die "$dashless: don't know how to '$option' current state"
 
+if test "$action" = merge -a "$option" = --skip ; then
+    die "$dashless: cannot '--skip' a merge"
+fi
+
 exec git "$action" "$option"
